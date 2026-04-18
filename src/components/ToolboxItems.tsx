@@ -4,18 +4,25 @@ import { twMerge } from "tailwind-merge";
 export const ToolboxItems = ({
   items,
   className,
+  itemsWrapperClassName,
 }: {
   items: readonly { title: string; iconType: React.ComponentType }[];
   className?: string;
+  itemsWrapperClassName?: string;
 }) => {
   return (
     <div
       className={twMerge(
         "flex  [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]",
-        className
+        className,
       )}
     >
-      <div className="flex flex-none py-0.5 gap-6">
+      <div
+        className={twMerge(
+          "flex flex-none py-0.5 gap-6 pr-6",
+          itemsWrapperClassName,
+        )}
+      >
         {items.map((item) => (
           <div
             key={item.title}
