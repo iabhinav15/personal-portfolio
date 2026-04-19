@@ -6,6 +6,7 @@ import memojiAvatar5 from "@/assets/images/memoji-avatar-5.png";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
 import Image from "next/image";
+import { Fragment } from "react";
 
 const testimonials = [
   {
@@ -49,32 +50,36 @@ export const TestimonialsSection = () => {
           eyebrow="What Clients Say about Me"
           description="Do not just take my word for it, see what my clients have to say"
         />
-        <div className="mt-16 lg:mt-24 flex overflow-x-clip [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div className="flex gap-8 flex-none">
-            {testimonials.map((testimonial) => (
-              <Card
-                key={testimonial.name}
-                className="max-w-xs md:p-8 md:max-w-md p-6"
-              >
-                <div className="flex gap-4 items-center">
-                  <div className="size-14 bg-gray-700 items-center justify-center inline-flex rounded-full flex-shrink-0">
-                    <Image
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
-                      className="max-h-full"
-                    />
-                  </div>
-                  <div className="">
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-white/40">
-                      {testimonial.position}
+        <div className="mt-12 lg:mt-24 flex overflow-x-clip [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4 -my-4">
+          <div className="flex gap-8 pr-8 flex-none animate-move-left [animation-duration:90s] hover:[animation-play-state:paused]">
+            {[...new Array(2)].fill(0).map((_, index) => (
+              <Fragment key={index}>
+                {testimonials.map((testimonial) => (
+                  <Card
+                    key={testimonial.name}
+                    className="max-w-xs md:p-8 md:max-w-md p-6 hover:-rotate-3  transition-all duration-300"
+                  >
+                    <div className="flex gap-4 items-center">
+                      <div className="size-14 bg-gray-700 items-center justify-center inline-flex rounded-full flex-shrink-0">
+                        <Image
+                          src={testimonial.avatar}
+                          alt={testimonial.name}
+                          className="max-h-full"
+                        />
+                      </div>
+                      <div className="">
+                        <p className="font-semibold">{testimonial.name}</p>
+                        <p className="text-sm text-white/40">
+                          {testimonial.position}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="mt-4 md:mt-6 text-sm md:text-base">
+                      {testimonial.text}
                     </p>
-                  </div>
-                </div>
-                <p className="mt-4 md:mt-6 text-sm md:text-base">
-                  {testimonial.text}
-                </p>
-              </Card>
+                  </Card>
+                ))}
+              </Fragment>
             ))}
           </div>
         </div>
